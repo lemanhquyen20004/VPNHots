@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_dashboard_title">VPN Hotspot</string>
+    <string name="ui_dashboard_subtitle">Sharing overview</string>
+    <string name="ui_dashboard_hotspot">Hotspot</string>
+    <string name="ui_dashboard_active">On</string>
+    <string name="ui_dashboard_inactive">Off</string>
+    <string name="ui_dashboard_vpn_interfaces">Interfaces forwarding through VPN</string>
+    <string name="ui_dashboard_detected_interfaces">Detected tethering interfaces</string>
+    <string name="ui_dashboard_manage">Share network</string>
+    <string name="ui_dashboard_configure">Wi-Fi setup</string>
+</resources>

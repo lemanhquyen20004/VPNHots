@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_dashboard_title">VPN Hotspot</string>
+    <string name="ui_dashboard_subtitle">Tổng quan chia sẻ mạng</string>
+    <string name="ui_dashboard_hotspot">Điểm phát Wi-Fi</string>
+    <string name="ui_dashboard_active">Đang bật</string>
+    <string name="ui_dashboard_inactive">Đang tắt</string>
+    <string name="ui_dashboard_vpn_interfaces">Giao diện đã bật chuyển tiếp VPN</string>
+    <string name="ui_dashboard_detected_interfaces">Giao diện chia sẻ được phát hiện</string>
+    <string name="ui_dashboard_manage">Phát mạng</string>
+    <string name="ui_dashboard_configure">Cài Wi-Fi</string>
+</resources>
