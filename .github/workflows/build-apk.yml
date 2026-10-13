@@ -22,6 +22,11 @@ jobs:
           submodules: recursive
           path: upstream
 
+      - name: Check out VPNHots UI sources
+        uses: actions/checkout@v4
+        with:
+          path: custom
+
       - name: Apply Modern Dark and Mint Green UI changes
         shell: bash
         run: |
@@ -61,6 +66,50 @@ jobs:
           PATCH_B64
           git -C upstream apply --check "$GITHUB_WORKSPACE/ui-refresh.patch"
           git -C upstream apply "$GITHUB_WORKSPACE/ui-refresh.patch"
+
+      - name: Apply polished dashboard and wire real controls
+        shell: bash
+        run: |
+          cp custom/ui/v2/TetheringDashboard.kt upstream/mobile/src/main/java/be/mygod/vpnhotspot/ui/TetheringDashboard.kt
+          cp custom/ui/v2/ui_v2.xml upstream/mobile/src/main/res/values/ui_v2.xml
+          cp custom/ui/v2/ui_v2_vi.xml upstream/mobile/src/main/res/values-vi/ui_v2.xml
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          root = Path('upstream/mobile/src/main')
+          tether = root / 'java/be/mygod/vpnhotspot/ui/TetheringScreen.kt'
+          t = tether.read_text()
+          old = '    onStartRepeaterWps: (String?) -> Unit,\n)'
+          new = '    onStartRepeaterWps: (String?) -> Unit,\n    connectedDeviceCount: Int = 0,\n    onOpenClients: () -> Unit = {},\n)'
+          assert t.count(old) == 1
+          t = t.replace(old, new)
+          old = '                    onManageTethering = { ManageBar.start(context::startActivity) },\n'
+          new = old + '                    connectedDeviceCount = connectedDeviceCount,\n                    onOpenClients = onOpenClients,\n'
+          assert t.count(old) == 1
+          tether.write_text(t.replace(old, new))
+          app = root / 'java/be/mygod/vpnhotspot/ui/VpnHotspotApp.kt'
+          t = app.read_text()
+          old = '                        interfaceRefreshVersion = tetheringInterfaceRefreshVersion,\n'
+          new = old + '                        connectedDeviceCount = validClientCount,\n                        onOpenClients = { navController.navigate(RootDestination.Clients.route) },\n'
+          assert t.count(old) == 1
+          app.write_text(t.replace(old, new))
+          theme = root / 'java/be/mygod/vpnhotspot/ui/theme/Theme.kt'
+          t = theme.read_text()
+          substitutions = {
+              '0xFF68DBCC':'0xFF35EDC5',
+              '0xFF003731':'0xFF031510',
+              '0xFF164943':'0xFF0E2228',
+              '0xFFCBF3EB':'0xFFBFFCEE',
+              '0xFF0C1719':'0xFF061116',
+              '0xFF344D4A':'0xFF18323A',
+              '0xFF152528':'0xFF0E2228',
+              '0xFFE0F0EB':'0xFFF1FAFB',
+              '0xFFA8C3BC':'0xFFA6C2C6',
+          }
+          for old, new in substitutions.items():
+              assert old in t, old
+              t = t.replace(old, new)
+          theme.write_text(t)
+          PYTHON
 
       - name: Set up Java
         uses: actions/setup-java@v4
