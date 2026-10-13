@@ -24,7 +24,7 @@ lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-com
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 navigation-compose = "androidx.navigation:navigation-compose:2.10.0-beta01"
 oss-licenses-plugin = "com.google.android.gms:oss-licenses-plugin:0.13.0"
-play-services-oss-licenses = "com.google.android.gms:play-services-oss-licenses:17.5.1"
+play-services-oss-licenses = "com.google.android.gms:play-services-oss-licenses:17.5.2"
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
