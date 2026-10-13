@@ -47,7 +47,7 @@ jobs:
         run: ./gradlew :mobile:assembleDebug --no-daemon
 
       - name: Archive built APKs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: VPNHots-APK-Debug
           path: mobile/build/outputs/apk/**/*.apk
