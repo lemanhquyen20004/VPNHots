@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="ui_v2_app_title">VPN Hotspot</string>
+<string name="ui_v2_vpn_active">VPN FORWARDING</string>
+<string name="ui_v2_vpn_idle">VPN NOT SHARED</string>
+<string name="ui_v2_hotspot_on">Broadcasting</string>
+<string name="ui_v2_hotspot_off">Hotspot off</string>
+<string name="ui_v2_status_on">Wi-Fi hotspot is currently active</string>
+<string name="ui_v2_status_off">Open network management to turn on hotspot</string>
+<string name="ui_v2_devices">Devices connected</string>
+<string name="ui_v2_forwarded">Forwarded VPN interfaces</string>
+<string name="ui_v2_share_vpn">Share over VPN</string>
+<string name="ui_v2_forwarding_on">Forwarding is active</string>
+<string name="ui_v2_forwarding_off">No interfaces are forwarding VPN</string>
+<string name="ui_v2_manage">Manage hotspot</string>
+<string name="ui_v2_wifi_settings">Wi-Fi settings</string>
+<string name="ui_v2_clients">Clients</string>
+<string name="ui_v2_detected">Detected interfaces</string>
+<string name="ui_v2_security">VPN forwarding</string>
+<string name="ui_v2_active">Active</string>
+<string name="ui_v2_inactive">Off</string>
+</resources>
