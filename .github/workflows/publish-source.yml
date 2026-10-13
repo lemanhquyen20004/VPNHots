@@ -71,6 +71,13 @@ jobs:
           git -C target apply --check "$GITHUB_WORKSPACE/ui-refresh.patch"
           git -C target apply "$GITHUB_WORKSPACE/ui-refresh.patch"
 
+      - name: Exclude upstream workflows from source publication
+        shell: bash
+        run: |
+          # GitHub's Actions token cannot create workflow files via git push.
+          # The build workflow remains maintained on build/vpnhotspot-ui.
+          rm -rf target/.github/workflows
+
       - name: Write customization notes
         shell: bash
         run: |
