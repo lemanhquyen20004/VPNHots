@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="ui_v2_app_title">VPN Hotspot</string>
+<string name="ui_v2_vpn_active">ĐANG CHIA SẺ VPN</string>
+<string name="ui_v2_vpn_idle">CHƯA CHIA SẺ VPN</string>
+<string name="ui_v2_hotspot_on">Đang phát mạng</string>
+<string name="ui_v2_hotspot_off">Chưa phát mạng</string>
+<string name="ui_v2_status_on">Điểm phát Wi-Fi đang hoạt động</string>
+<string name="ui_v2_status_off">Mở quản lý phát mạng để bật Wi-Fi</string>
+<string name="ui_v2_devices">Thiết bị kết nối</string>
+<string name="ui_v2_forwarded">Giao diện VPN hoạt động</string>
+<string name="ui_v2_share_vpn">Chia sẻ qua VPN</string>
+<string name="ui_v2_forwarding_on">Đang chuyển tiếp lưu lượng qua VPN</string>
+<string name="ui_v2_forwarding_off">Chưa bật chuyển tiếp VPN</string>
+<string name="ui_v2_manage">Quản lý phát mạng</string>
+<string name="ui_v2_wifi_settings">Cài Wi-Fi</string>
+<string name="ui_v2_clients">Thiết bị</string>
+<string name="ui_v2_detected">Giao diện phát hiện</string>
+<string name="ui_v2_security">Chuyển tiếp VPN</string>
+<string name="ui_v2_active">Hoạt động</string>
+<string name="ui_v2_inactive">Đã tắt</string>
+</resources>
