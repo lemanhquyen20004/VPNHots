@@ -1,0 +1,97 @@
+name: Build VPNHots UI APK
+
+on:
+  push:
+    branches:
+      - build/vpnhotspot-ui
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out original VPN Hotspot
+        uses: actions/checkout@v4
+        with:
+          repository: Mygod/VPNHotspot
+          ref: 6e3d4a4f9db4f72d0d4a422350b5234cddb52c48
+          submodules: recursive
+          path: upstream
+
+      - name: Apply Modern Dark and Mint Green UI changes
+        shell: bash
+        run: |
+          base64 -d <<'PATCH_B64' | gunzip > ui-refresh.patch
+          H4sIAAAAAAACA9VbzXPbuBW/+6/A6rBDRRL1rdie2Gt9edfTOM5YbjI9eWASktBQJEuAsrVZn3rodffQe3f23GnPyaGHZPp/+D/pA0hKFEVSpOWkLQ+ySP3e
+          A/DwvkHrdDxGlcqEcoSrM+uGGqTKHK06w9Ss/hHPcfWGVGeLiaVX57Y5tTizLV51aZVPyYxUr8Sn+o6jmx2I9yqVyk6j75VKpd1mcHKCKgflA1Q6KLea6ORk
+          D9GZbTkgFFN3LKrfqZoFDxhRZ5gTh2KjqerYede3DMsZaYJNJpKFiWdUGzya8iWdTHmYtLKdlNzZDmGMzskGdWk7tRGlSZys45qcgjj78h7fGCn8XapOHGxP
+          qcZUyTyZLUBtA/Ox5czUl5aGjb5lcnIHm75Xqj57hnoOkCAbG4RzggCGdDKnGmHolvKp5XJ07i8G/cFyy4i52hRhhrreQKheV9Gz6l7JdugcgGgOQCmo1z7L
+          IxSVgbJXQnABxQw7CwDI35Ta3elprdbpdzrFsoewzNcxGO8KMD4XsSpQWuKsQfvD4emwt8EuHlzrN9vNRgBmRLNMPTp2q9N53tnExDMc1Ib7wyX4BmvvJo7l
+          grTXVtM+7Z4eLDm6zhhrZDviDYYtMfn6eAMYrx0Bxk9t2DttntZXghnFjFvvNNqNxgYmbmQQS63dXUJdbsCIccB+d3AwaAlgUShgWGmEVa90JuIdUlSmsz/o
+          9fvpKlOrNZ8365lUpt5pHbSaGVWmD2Jc6Ve8ynTr/WG/k1FlGvvtZmu4RWVq/frzeqrKxCLi9qPZag1a3UwqU2+DOuynq8ywdloL21uKynT3+81eP4PKNHvt
+          drvuqQzaQych/4hOLmx+ZirDOxs81IzAtI3AWzWHS7/dtenhoWZgxooyUjVq5eeo1G7BpwhV4hIKqK3UDSZAx0jxo4acC/r2W9RzqaGrb4aXo7OLV+po8Lvr
+          s1dX6PgIgW6h9x6nFTfpZoFT2Ouqmus4MM8VVo4Dyi5jaRHFhzjF51ZExGAEJUSzJWqvIjjfe+DoABHOPsvkKKcUvS2KZxe2Wvl72Pd7qwx25Moz5OXK1+Ud
+          uiuvMDOLU1CjAHQeug0FZgW0Q39sJnZFIJlxqDkZaQ4hZv5sbJPBIzKyGCb5s7IYJlLf281yG5XEn3p7qfKeeEFsVBr6uf9VHVMDjOhuRH+UcpW4Ne0ewdbC
+          GOwlZRyel1DoopzMlHdEeMCCjtn0xsKOfm3NiTOn5LZQjOLFtZz1ICBQNkHi8ld66ZomoGEILimJfrWwCVM1z20xxWMoHqpvz07Piuinn5BDbCL0sKtxUBh0
+          BMSOS+CX+KGCyxC2e2EaizPp6745QqZrGOV4IkiebmH2MLczsEPflbrSnc2wiSdEhzmK+/cgJ/QNNRE1sTef+wSWOuFE40TfYEiDB3JiTGWwXQk8LBOcz5hO
+          XIf84EkQ6EMPu3Yi4bmc9nKDgO498p71sKMyjh0eOJ3DQ3kr5Uv5ohi7pOL6o/u9tV/BnMewnaZGvoegZwd65InomgezKKxpY9iPsql1e+lvtADt7hOWKrmD
+          Wwjz2DPJLQILI8L0CKpDvttqSXdRhbS7KpRrF7tfG0qYfq1cQ6U6mH1D2H3JhoQCNg/dQIki+KgrPlAoiIwsqYwYiywEC++rGngB4VrtOlA5TIiIunnIetZd
+          HjgEIndm5qG4tG7zwH1395bqfJqHzsa6sPQ8JMJGM+HZFIPv6lNHM8hIfM9BdSkeEL1vOZDAbSFelak9l3PLzILsg3ZlxQ3IGLsGZ1nwP1gO/VF4cGMADkQn
+          ThaiMy3bpNdSkCwEF14+qmeXi5/qZoFeyfL7ifoAXaiuzXQjBFQQ3VNBkE2BWsvIckmY5Toa2YpnXPidTHCZ/45hi9VT+HhLRKK4nYDxhUGkyC4gixgbadYN
+          NK5JuarbS0ycp7sMeh+XBOsVC6I7gtjFXYY0UNpDJAKOZTIIvgaZiPKUWwgcLOTIkPGIMLgMRVXND6LSApGYHfPaIeEypTR2zeQsZz2rOUQ9yzIINv3omZRT
+          HCK49zHxSUIYsZkCHCLI/CvH6PcgryUoEu4jmGXy1l9P0VKSSOlVlWLgLJXp0sgBXO/ARpUR7CqnmnyyDw+KobRBejR4vunTlEYUK+sHJirHkONRxYbKWoYp
+          WlDVeuXc0XpdoobqDzXaIAjGWUtfvcgUSVXjZBEsvlGLTFmWiv7qQ9EUaEN3KoOgDY5ooUh5hek3smkIfTGp8/b9icnUlvMK3IuYVfBd7ROham98jLGIYbDa
+          6ixLa8SIJrZY8N2sEqhGKEiWPR3IsrOxrMUF2YkSJy8RupW2t4FeaW/yNNEkDiAuEbWU9LrDd8PAOeKQlUtVd/Ct8Csq1a5vYXqrzLhYTufqT3xAmOZQW7qs
+          1IImuMDp8VSxLttkWxglirbRiVGAlMphVUGUMjzyTTVu9FsZhpT6uJi4ZSL2pGyX3+VZD4SwTd4DiEnXq0KYU26QtGXKaLchar6wLdnvX6iSw0vsTEgKl/Ey
+          vgKrVbCF3NvQU8i2m89mOzSBXfGLi5K5N7tL88bSF6MZTjWALyuV+2hFXIrzdpt0KaGxnmRL21fiN4Dhmb1QsGFPMcBr6n57nMk5x8efnXKEVjRHiA0VeYLO
+          SASdHuG3hJgJbHYOfl/Dl/h54076b+AbYmzzJlkMwFfUr+AN0gOM6AKtJ9RFFC8+v/Eme9bxiKA5lxaVvrjwk1z5iMxoRnceJ5OtGVIyWymxDLrgn+U8lSvc
+          6A8oj3HMUc9Wb0Dg30yiH5G8xpr8stY7J6BgWoLyzrHhCk1JqvVUbo2kfipJ+iZVKavjgEr4etk+Zkks05Ol7b3d/MuPL2OfePHBIF9BAvc76tV+olp5XSkF
+          qnqDau9kNz9SupfRl0l2M8nYO+xI840zfPcSzFGU6/UUmOV3fAAWbgCpQ8OgNqPs0b5FXOstvjVhRpsl/1VpBi2m/2mBhm79r/DnXvTZ1hphwfseoiEWdQ7S
+          DRwiz9jLnlWvboMNOFzKP7QVq87URqEXfC3n6bQ0NywvZiPlfCMC2xrzpwTrQuvOiU7dWYQ6R9m2Y1FSTF2ZFH3elUmi2GU9QQE1o2ag3o3NZUhVSz3rcwir
+          yv1i1bBtqXczI+aoLQX9+PO7NKbhkzrvoO7Fd2JqoLKMWuZRoa7WCoiYmiWSg6OCy8eV/cJ3x4BzfOfBjj1ZvPBcCDLxjABwo/lQOH7z+hXy/dqLqofeThtU
+          24VjqDElKDjTz87Dz0ELx7lH9/LwwvGFmZ0myN6BajzOTraeHBWOl8kIC6VniE8dy51MEcgyO+uY1KNwPPAfrs4UVkf7LDtvL+R6u0OQCdWt5bzLTr6MMYXj
+          t7RyShEj3LVD9C+qIUXLaGqVOc1nbXEET2FwsXz/n2zu6uHjXwHzJxebSJtSjNjDh49o9vDhV3PyCPv7/DN9+PjnGbKnn37lSG54flv8/DPETXTz8OHv/DFG
+          6ZHzhw//4I83zu8ptpAOi/mLiT7/8uk3bzogIncBCzQRpw8f/mU/gZWGB1ptwOdf/v3Ph4+/ab4gp/L3/Db7WlLn3c2QyfY//Y1ubGN2i017s+SNbfp627Xt
+          /O/ARMkf8WLcBov8r8dssBC233lebqISfDZS/1/BpfK8RdUgQU7+b4EAxaZYt25TuUXe2xdTabdq4v088ae19npecL3CczqRR8w97Cje252ZjlbkdLx0thxP
+          luNUlAU9vlhGUENhY2iQOfbPlcSoCfVE/kG3ddY3Rq/J0VFcY/Y/dObU+rQzAAA=
+          PATCH_B64
+          git -C upstream apply --check "$GITHUB_WORKSPACE/ui-refresh.patch"
+          git -C upstream apply "$GITHUB_WORKSPACE/ui-refresh.patch"
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Gradle cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Install build tools
+        run: |
+          sdkmanager "platforms;android-37.0" "build-tools;37.0.0" "ndk;29.0.14206865"
+          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/29.0.14206865" >> "$GITHUB_ENV"
+
+      - name: Install Rust targets and cargo-ndk
+        run: |
+          rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
+          cargo install cargo-ndk --locked
+
+      - name: Build Android debug APKs
+        working-directory: upstream
+        run: ./gradlew :mobile:assembleDebug --no-daemon
+
+      - name: Upload installable APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: VPNHots-UI-Debug-APKs
+          path: upstream/mobile/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 14
